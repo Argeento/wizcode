@@ -12,6 +12,7 @@ export default defineConfig({
     Components(),
     AutoImport({
       imports: ['vue'],
+      dirs: ['src/services'],
     }),
   ],
 })
