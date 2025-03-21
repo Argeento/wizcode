@@ -66,5 +66,16 @@ export function useFetchTopAlbums() {
     }
   })
 
-  return { loading, error, albums }
+  const categories = computed(() => {
+    return (
+      albums.value
+        .map((album) => album.category)
+        // Remove duplicate categories
+        .filter((category, index, self) => {
+          return self.findIndex((c) => c.id === category.id) === index
+        })
+    )
+  })
+
+  return { loading, error, albums, categories }
 }

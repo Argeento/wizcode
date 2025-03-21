@@ -8,5 +8,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Categories: typeof import('./src/components/Categories.vue')['default']
   }
 }
