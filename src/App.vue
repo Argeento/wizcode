@@ -26,20 +26,30 @@ const albumsFilteredByQueryAndCategory = computed(() => {
 </script>
 
 <template>
-  <div class="text-blue-600">iTunes Top 100</div>
   <div v-if="loading">Loading...</div>
   <div v-else-if="error">
     An unexpected error occurred. Please try again later.
   </div>
-  <div v-else>
-    <input type="search" v-model.trim="searchQuery" placeholder="Search" />
-    <Categories
-      :categories="categories"
-      :albums-filtered-by-query="albumsFilteredByQuery"
-      v-model="selectedCategoryIds"
-    />
-    <div v-for="album in albumsFilteredByQueryAndCategory" :key="album.id">
-      {{ album.name }}
-    </div>
+  <div v-else class="min-h-screen">
+    <header class="fixed top-0 left-0 z-20 w-full bg-white shadow">
+      <input
+        type="search"
+        v-model.trim="searchQuery"
+        placeholder="Search for artists or albums..."
+        class="w-full p-4 text-center text-2xl"
+      />
+    </header>
+
+    <aside class="fixed top-[64px] left-0 h-full w-[250px] bg-gray-100 p-4">
+      <Categories
+        v-model="selectedCategoryIds"
+        :albums-filtered-by-query="albumsFilteredByQuery"
+        :categories="categories"
+      />
+    </aside>
+
+    <main class="p-4 pt-[84px] md:ml-[250px]">
+      <AlbumList :albums="albumsFilteredByQueryAndCategory" />
+    </main>
   </div>
 </template>
