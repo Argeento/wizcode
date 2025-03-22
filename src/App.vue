@@ -31,7 +31,7 @@ const albumsFilteredByQueryAndCategory = computed(() => {
     An unexpected error occurred. Please try again later.
   </div>
   <div v-else class="min-h-screen">
-    <header class="fixed top-0 left-0 z-20 w-full bg-white shadow">
+    <header class="fixed top-0 left-0 z-20 w-full bg-black shadow">
       <input
         type="search"
         v-model.trim="searchQuery"
@@ -40,7 +40,7 @@ const albumsFilteredByQueryAndCategory = computed(() => {
       />
     </header>
 
-    <aside class="fixed top-[64px] left-0 h-full w-[250px] bg-gray-100 p-4">
+    <aside class="fixed top-[64px] left-0 h-full w-[250px] p-4">
       <Categories
         v-model="selectedCategoryIds"
         :albums-filtered-by-query="albumsFilteredByQuery"

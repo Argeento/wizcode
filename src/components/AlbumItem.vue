@@ -6,7 +6,7 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 </script>
 
 <template>
-  <li class="h-[230px] w-[170px] bg-white">
+  <li class="h-[230px] w-[170px]">
     <img
       :src="album.coverSrc"
       :alt="album.name"
