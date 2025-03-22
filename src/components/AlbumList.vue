@@ -3,7 +3,7 @@ defineProps<{ albums: ITunesAlbum[] }>()
 </script>
 
 <template>
-  <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-4">
+  <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-6">
     <AlbumItem v-for="album in albums" :key="album.id" :album="album" />
   </TransitionGroup>
 </template>
