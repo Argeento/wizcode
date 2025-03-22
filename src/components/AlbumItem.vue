@@ -6,39 +6,43 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 </script>
 
 <template>
-  <li
-    class="relative w-[280px] overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
-  >
-    <!-- Blurred card background -->
+  <Atropos tag="li">
     <div
-      class="absolute top-0 left-0 -z-10 h-full w-full bg-cover bg-center blur-sm brightness-120"
-      :style="{ backgroundImage: `url(${props.album.coverSrc})` }"
-    />
-
-    <!-- Album cover -->
-    <div
-      class="cover-wrapper mb-[9px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
+      class="relative w-[280px] overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
     >
-      <img
-        :src="album.coverSrc"
-        :alt="album.name"
-        width="260"
-        height="260"
-        loading="lazy"
-        class="relative -z-10"
+      <!-- Blurred card background -->
+      <div
+        class="absolute top-0 left-0 -z-10 h-full w-full bg-cover bg-center blur-sm brightness-120"
+        :style="{ backgroundImage: `url(${props.album.coverSrc})` }"
       />
-    </div>
 
-    <!-- Album info text -->
-    <div
-      class="rounded-[12px] border-t-2 border-t-white/20 bg-black/65 px-4 py-3 text-center shadow-lg"
-    >
-      <div class="truncate pb-0 text-center font-medium">{{ shortName }}</div>
-      <div class="ml-2 truncate text-center text-sm text-gray-400">
-        {{ props.album.artist.name }}
+      <!-- Album cover -->
+      <div
+        class="cover-wrapper mb-[9px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
+      >
+        <img
+          :src="album.coverSrc"
+          :alt="album.name"
+          width="260"
+          height="260"
+          loading="lazy"
+          class="relative -z-10 rounded-[12px]"
+          data-atropos-offset="-2"
+        />
+      </div>
+
+      <!-- Album info text -->
+      <div
+        class="rounded-[12px] border-t-2 border-t-white/20 bg-black/65 px-4 py-3 text-center shadow-lg"
+        data-atropos-offset="2"
+      >
+        <div class="truncate pb-0 text-center font-medium">{{ shortName }}</div>
+        <div class="ml-2 truncate text-center text-sm text-gray-400">
+          {{ props.album.artist.name }}
+        </div>
       </div>
     </div>
-  </li>
+  </Atropos>
 </template>
 
 <style scoped>
