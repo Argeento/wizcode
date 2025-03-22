@@ -17,7 +17,7 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 
     <!-- Album cover -->
     <div
-      class="cover-wrapper mb-[10px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
+      class="cover-wrapper mb-[9px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
     >
       <img
         :src="album.coverSrc"
@@ -31,7 +31,7 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 
     <!-- Album info text -->
     <div
-      class="rounded-[12px] border border-black/60 border-t-white/18 bg-black/70 px-4 py-3 text-center"
+      class="rounded-[12px] border-t-2 border-t-white/20 bg-black/65 px-4 py-3 text-center shadow-lg"
     >
       <div class="truncate pb-0 text-center font-medium">{{ shortName }}</div>
       <div class="ml-2 truncate text-center text-sm text-gray-400">
