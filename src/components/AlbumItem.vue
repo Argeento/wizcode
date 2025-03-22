@@ -7,7 +7,7 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 
 <template>
   <li
-    class="relative h-[307px] w-[240px] overflow-hidden rounded-[16px] border border-b-0 border-l-0 border-white/20 p-[10px]"
+    class="relative w-[280px] overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
   >
     <!-- Blurred card background -->
     <div
@@ -17,13 +17,13 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 
     <!-- Album cover -->
     <div
-      class="cover-wrapper mb-[10px] h-[220px] w-[220px] overflow-hidden rounded-[10px]"
+      class="cover-wrapper mb-[10px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
     >
       <img
         :src="album.coverSrc"
         :alt="album.name"
-        width="220"
-        height="220"
+        width="260"
+        height="260"
         loading="lazy"
         class="relative -z-10"
       />
@@ -31,10 +31,10 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 
     <!-- Album info text -->
     <div
-      class="h-14 rounded-[10px] border border-black/60 border-t-white/18 bg-black/70 px-4 py-2 text-center text-sm"
+      class="rounded-[12px] border border-black/60 border-t-white/18 bg-black/70 px-4 py-3 text-center"
     >
       <div class="truncate pb-0 text-center font-medium">{{ shortName }}</div>
-      <div class="ml-2 truncate text-center text-gray-400">
+      <div class="ml-2 truncate text-center text-sm text-gray-400">
         {{ props.album.artist.name }}
       </div>
     </div>
