@@ -31,13 +31,9 @@ const albumsFilteredByQueryAndCategory = computed(() => {
     An unexpected error occurred. Please try again later.
   </div>
   <div v-else class="min-h-screen">
-    <header class="fixed top-0 left-0 z-20 w-full bg-black shadow">
-      <input
-        type="search"
-        v-model.trim="searchQuery"
-        placeholder="Search for artists or albums..."
-        class="w-full p-4 text-center text-2xl"
-      />
+    <header class="mt-26 mb-20">
+      <h1 class="my-8 text-center text-6xl">iTunes Top Albums</h1>
+      <SearchBar v-model="searchQuery" />
     </header>
 
     <aside class="fixed top-[64px] left-0 h-full w-[250px] p-4">
@@ -48,7 +44,7 @@ const albumsFilteredByQueryAndCategory = computed(() => {
       />
     </aside>
 
-    <main class="p-4 pt-[84px] md:ml-[250px]">
+    <main class="p-4 md:ml-[250px]">
       <AlbumList :albums="albumsFilteredByQueryAndCategory" />
     </main>
   </div>

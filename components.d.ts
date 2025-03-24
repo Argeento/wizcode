@@ -13,5 +13,6 @@ declare module 'vue' {
     Atropos: typeof import('./src/components/Atropos.vue')['default']
     CategoryItem: typeof import('./src/components/CategoryItem.vue')['default']
     CategoryList: typeof import('./src/components/CategoryList.vue')['default']
+    SearchBar: typeof import('./src/components/SearchBar.vue')['default']
   }
 }
