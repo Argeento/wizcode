@@ -22,15 +22,18 @@ const categoriesWithCount = computed(() => {
 </script>
 
 <template>
-  <ul>
-    <li v-for="category in categoriesWithCount" :key="category.id">
-      <BaseToggle
-        type="checkbox"
-        :model-value="model.includes(category.id)"
-        @update:model-value="toggleCategory($event, category.id)"
-      >
-        {{ category.name }} ({{ category.count }})
-      </BaseToggle>
-    </li>
-  </ul>
+  <fieldset>
+    <legend class="text- mb-1 uppercase">Categories</legend>
+    <ul>
+      <li v-for="category in categoriesWithCount" :key="category.id">
+        <BaseToggle
+          type="checkbox"
+          :model-value="model.includes(category.id)"
+          @update:model-value="toggleCategory($event, category.id)"
+        >
+          {{ category.name }} ({{ category.count }})
+        </BaseToggle>
+      </li>
+    </ul>
+  </fieldset>
 </template>

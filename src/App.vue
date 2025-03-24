@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { loading, error, albums, categories } = useFetchTopAlbums()
 
+// Filters
 const selectedCategoryIds = ref<string[]>([])
 const searchQuery = ref('')
 
@@ -23,6 +24,39 @@ const albumsFilteredByQueryAndCategory = computed(() => {
     selectedCategoryIds.value.some((id) => id === album.category.id),
   )
 })
+
+// Sorting
+const sortOptions = [
+  { label: 'iTunes', value: 'default' },
+  { label: 'Name', value: 'name' },
+  { label: 'Artist', value: 'artist' },
+  { label: 'Release date', value: 'releaseDate' },
+] as const
+
+type SortValue = (typeof sortOptions)[number]['value']
+const sortBy = ref<SortValue>('default')
+
+const albumsFilteredAndSorted = computed(() => {
+  let sortFn: (a: ITunesAlbum, b: ITunesAlbum) => number
+  switch (sortBy.value) {
+    case 'default':
+      sortFn = (a, b) => a.defaultSort - b.defaultSort
+      break
+    case 'name':
+      sortFn = (a, b) => a.name.localeCompare(b.name)
+      break
+    case 'artist':
+      sortFn = (a, b) => a.artist.name.localeCompare(b.artist.name)
+      break
+    case 'releaseDate':
+      sortFn = (a, b) => a.release.getTime() - b.release.getTime()
+      break
+    default:
+      const _exhaustiveCheck: never = sortBy.value
+      throw new Error(`Unhandled sort option: ${_exhaustiveCheck}`)
+  }
+  return [...albumsFilteredByQueryAndCategory.value].sort(sortFn)
+})
 </script>
 
 <template>
@@ -41,11 +75,13 @@ const albumsFilteredByQueryAndCategory = computed(() => {
         v-model="selectedCategoryIds"
         :albums-filtered-by-query="albumsFilteredByQuery"
         :categories="categories"
+        class="mb-4"
       />
+      <SortOptions v-model="sortBy" :options="sortOptions" />
     </aside>
 
     <main class="p-4 md:ml-[250px]">
-      <AlbumList :albums="albumsFilteredByQueryAndCategory" />
+      <AlbumList :albums="albumsFilteredAndSorted" />
     </main>
   </div>
 </template>

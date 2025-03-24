@@ -18,11 +18,13 @@ export type ITunesAlbum = {
   release: Date
   rights: string
   href: string
+  defaultSort: number
   artist: ITunesArtist
   category: ITunesCategory
 }
 
-let id = 0
+let artistId = 0
+let defaultSort = 0
 
 function parseAlbumData(entry: any): ITunesAlbum {
   return {
@@ -33,8 +35,9 @@ function parseAlbumData(entry: any): ITunesAlbum {
     release: new Date(entry['im:releaseDate'].label),
     rights: entry.rights.label,
     href: entry.link.attributes.href,
+    defaultSort: defaultSort++,
     artist: {
-      id: id++,
+      id: artistId++,
       name: entry['im:artist'].label,
       href: entry['im:artist'].attributes?.url,
     },

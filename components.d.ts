@@ -14,5 +14,6 @@ declare module 'vue' {
     BaseToggle: typeof import('./src/components/BaseToggle.vue')['default']
     CategoryList: typeof import('./src/components/CategoryList.vue')['default']
     SearchBar: typeof import('./src/components/SearchBar.vue')['default']
+    SortOptions: typeof import('./src/components/SortOptions.vue')['default']
   }
 }
