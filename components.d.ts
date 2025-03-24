@@ -11,6 +11,7 @@ declare module 'vue' {
     AlbumItem: typeof import('./src/components/AlbumItem.vue')['default']
     AlbumList: typeof import('./src/components/AlbumList.vue')['default']
     Atropos: typeof import('./src/components/Atropos.vue')['default']
-    Categories: typeof import('./src/components/Categories.vue')['default']
+    CategoryItem: typeof import('./src/components/CategoryItem.vue')['default']
+    CategoryList: typeof import('./src/components/CategoryList.vue')['default']
   }
 }

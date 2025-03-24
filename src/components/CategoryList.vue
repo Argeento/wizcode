@@ -13,7 +13,6 @@ const toggleCategory = (id: string) => {
   const updatedSelection = isSelected(id)
     ? props.modelValue.filter((categoryId) => categoryId !== id)
     : [...props.modelValue, id]
-
   emit('update:modelValue', updatedSelection)
 }
 
@@ -28,18 +27,13 @@ const categoriesWithCount = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <div
+  <ul>
+    <CategoryItem
       v-for="category in categoriesWithCount"
       :key="category.id"
-      class="cursor-pointer"
-      @click="toggleCategory(category.id)"
-      :class="{
-        'bg-blue-300': isSelected(category.id),
-        'opacity-50': category.count === 0,
-      }"
-    >
-      {{ category.name }} ({{ category.count }})
-    </div>
-  </div>
+      :category="category"
+      :selected="isSelected(category.id)"
+      @toggle="toggleCategory"
+    />
+  </ul>
 </template>

@@ -41,7 +41,7 @@ const albumsFilteredByQueryAndCategory = computed(() => {
     </header>
 
     <aside class="fixed top-[64px] left-0 h-full w-[250px] p-4">
-      <Categories
+      <CategoryList
         v-model="selectedCategoryIds"
         :albums-filtered-by-query="albumsFilteredByQuery"
         :categories="categories"
