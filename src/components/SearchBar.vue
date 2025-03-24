@@ -1,11 +1,5 @@
 <script setup lang="ts">
-defineProps<{ modelValue: string }>()
-const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
-
-const onInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.value.trim())
-}
+const model = defineModel<string>({ required: true })
 </script>
 
 <template>
@@ -33,8 +27,7 @@ const onInput = (event: Event) => {
 
     <input
       type="search"
-      @input="onInput"
-      :value="modelValue"
+      v-model.trim="model"
       placeholder="Search for an artist or album..."
       class="w-full py-2 pr-4 pl-12 text-2xl outline-none"
     />
