@@ -23,7 +23,7 @@ const categoriesWithCount = computed(() => {
 
 <template>
   <fieldset>
-    <legend class="text- mb-1 uppercase">Categories</legend>
+    <legend class="mb-1 text-sm uppercase">Categories</legend>
     <ul>
       <li v-for="category in categoriesWithCount" :key="category.id">
         <BaseToggle
