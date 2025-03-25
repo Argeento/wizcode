@@ -4,7 +4,7 @@ const model = defineModel<string>({ required: true })
 
 <template>
   <label
-    class="wrapper mx-auto flex w-[465px] cursor-text items-center bg-black px-8 py-3"
+    class="wrapper mx-auto flex w-full max-w-[305px] cursor-text items-center bg-black px-4 py-3 md:w-[465px] md:max-w-none md:px-8"
   >
     <div class="sr-only">Search for an artist or album</div>
     <svg
@@ -12,7 +12,7 @@ const model = defineModel<string>({ required: true })
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      class="-ml-6 translate-x-8"
+      class="md:-ml-6 md:translate-x-8"
     >
       <circle
         cx="11"
@@ -29,7 +29,7 @@ const model = defineModel<string>({ required: true })
       type="search"
       v-model.trim="model"
       placeholder="Search for an artist or album..."
-      class="w-full py-2 pr-4 pl-12 text-2xl outline-none"
+      class="w-full pl-4 outline-none md:py-2 md:pr-4 md:pl-12 md:text-2xl"
     />
   </label>
 </template>

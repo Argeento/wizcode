@@ -64,9 +64,11 @@ const albumsFilteredAndSorted = computed(() => {
   <div v-else-if="error">
     An unexpected error occurred. Please try again later.
   </div>
-  <div v-else class="mx-auto min-h-screen max-w-[1800px] px-8">
-    <header class="mt-26 mb-20">
-      <h1 class="my-8 text-center text-6xl">iTunes Top Albums</h1>
+  <div v-else class="mx-auto min-h-screen max-w-[1800px] px-4 md:px-8">
+    <header class="my-16 md:mt-26 md:mb-20">
+      <h1 class="my-4 text-center text-3xl md:my-8 md:text-6xl">
+        iTunes Top Albums
+      </h1>
       <SearchBar v-model="searchQuery" />
     </header>
 
