@@ -65,15 +65,16 @@ const albumsFilteredAndSorted = computed(() => {
     An unexpected error occurred. Please try again later.
   </div>
   <div v-else class="mx-auto min-h-screen max-w-[1800px] px-4 md:px-8">
-    <header class="my-16 md:mt-26 md:mb-20">
-      <h1 class="my-4 text-center text-3xl md:my-8 md:text-6xl">
-        iTunes Top Albums
-      </h1>
-      <SearchBar v-model="searchQuery" />
-    </header>
+    <MainHeader
+      :categories="categories"
+      :sort-options="sortOptions"
+      v-model:search-query="searchQuery"
+      v-model:selected-category-ids="selectedCategoryIds"
+      v-model:sort-by="sortBy"
+    />
 
     <div class="flex">
-      <aside class="sticky top-6 h-full w-[230px]">
+      <aside class="sticky top-6 hidden h-full w-[230px] lg:block">
         <CategoryList
           v-model="selectedCategoryIds"
           :albums-filtered-by-query="albumsFilteredByQuery"
@@ -83,7 +84,7 @@ const albumsFilteredAndSorted = computed(() => {
         <SortOptions v-model="sortBy" :options="sortOptions" />
       </aside>
 
-      <main class="min-h-screen w-[calc(100%-230px)]">
+      <main class="min-h-screen w-full lg:w-[calc(100%-230px)]">
         <AlbumList :albums="albumsFilteredAndSorted" />
       </main>
     </div>
