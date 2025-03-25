@@ -6,7 +6,7 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 </script>
 
 <template>
-  <Atropos tag="li" class="mb-6">
+  <Atropos tag="li" class="mb-6 md:mb-0">
     <div
       class="relative overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
     >
