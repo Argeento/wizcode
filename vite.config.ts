@@ -12,7 +12,7 @@ export default defineConfig({
     Components(),
     AutoImport({
       imports: ['vue'],
-      dirs: ['src/services'],
+      dirs: ['src/services', 'src/composables'],
     }),
   ],
 })

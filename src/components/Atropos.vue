@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import Atropos from 'atropos'
+import { isMobile } from '../composables/useIsMobile'
 
-const { tag = 'div' } = defineProps<{ tag?: keyof HTMLElementTagNameMap }>()
+const { tag = 'div' } = defineProps<{
+  tag?: keyof HTMLElementTagNameMap
+}>()
 
 const atropos = useTemplateRef<HTMLElement>('atropos')
 
 onMounted(async () => {
+  if (isMobile.value) {
+    return
+  }
   await nextTick()
   if (atropos.value) {
     Atropos({

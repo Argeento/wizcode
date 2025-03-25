@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { isMobile } from '../composables/useIsMobile'
+
 defineProps<{ albums: ITunesAlbum[] }>()
 </script>
 
 <template>
-  <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-6">
+  <!-- Disable transitions on mobile -->
+  <div v-if="isMobile">
+    <AlbumItem v-for="album in albums" :key="album.id" :album="album" />
+  </div>
+  <TransitionGroup v-else name="list" tag="ul" class="flex flex-wrap gap-6">
     <AlbumItem v-for="album in albums" :key="album.id" :album="album" />
   </TransitionGroup>
 </template>
