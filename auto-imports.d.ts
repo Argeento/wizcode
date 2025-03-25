@@ -55,7 +55,7 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
-  const useFetchTopAlbums: typeof import('./src/services/iTuneApi')['useFetchTopAlbums']
+  const useFetchTopAlbums: typeof import('./src/composables/useFetchTopAlbums')['useFetchTopAlbums']
   const useId: typeof import('vue')['useId']
   const useModel: typeof import('vue')['useModel']
   const useSlots: typeof import('vue')['useSlots']
@@ -71,6 +71,6 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { ITunesCategory, ITunesArtist, ITunesAlbum } from './src/services/iTuneApi'
-  import('./src/services/iTuneApi')
+  export type { ITunesCategory, ITunesArtist, ITunesAlbum } from './src/composables/useFetchTopAlbums'
+  import('./src/composables/useFetchTopAlbums')
 }
