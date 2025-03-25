@@ -60,39 +60,45 @@ const albumsFilteredAndSorted = computed(() => {
 </script>
 
 <template>
-  <div v-if="loading">Loading...</div>
-  <div v-else-if="error">
-    An unexpected error occurred. Please try again later.
-  </div>
-  <div v-else class="mx-auto min-h-screen max-w-[1800px] px-4 md:px-8">
-    <MainHeader
-      :categories="categories"
-      :sort-options="sortOptions"
-      v-model:search-query="searchQuery"
-      v-model:selected-category-ids="selectedCategoryIds"
-      v-model:sort-by="sortBy"
-    />
-
-    <div class="flex">
-      <aside class="sticky top-6 hidden h-full w-[230px] lg:block">
-        <CategoryList
-          v-model="selectedCategoryIds"
-          :albums-filtered-by-query="albumsFilteredByQuery"
-          :categories="categories"
-          class="mb-4"
-        />
-        <SortOptions v-model="sortBy" :options="sortOptions" />
-      </aside>
-
-      <main class="min-h-screen w-full lg:w-[calc(100%-230px)]">
-        <AlbumList :albums="albumsFilteredAndSorted" />
-      </main>
+  <div class="mx-auto min-h-screen max-w-[1800px] px-4 md:px-8">
+    <div v-if="loading" class="pt-32 text-center uppercase">
+      Loading albums from iTunes...
     </div>
-    <footer class="mt-40 mb-10">
-      <p class="text-center text-xs text-gray-600">
-        Created by Adrian Wieprzkowicz as part of the Wizcode recruitment
-        process.
-      </p>
-    </footer>
+    <div v-else-if="error" class="pt-32 text-center uppercase">
+      An unexpected error occurred. <br />
+      Please try again later.
+    </div>
+    <div v-else>
+      <MainHeader
+        :categories="categories"
+        :sort-options="sortOptions"
+        v-model:search-query="searchQuery"
+        v-model:selected-category-ids="selectedCategoryIds"
+        v-model:sort-by="sortBy"
+      />
+
+      <div class="flex">
+        <aside class="sticky top-6 hidden h-full w-[230px] lg:block">
+          <CategoryList
+            v-model="selectedCategoryIds"
+            :albums-filtered-by-query="albumsFilteredByQuery"
+            :categories="categories"
+            class="mb-4"
+          />
+          <SortOptions v-model="sortBy" :options="sortOptions" />
+        </aside>
+
+        <main class="min-h-screen w-full lg:w-[calc(100%-230px)]">
+          <AlbumList :albums="albumsFilteredAndSorted" />
+        </main>
+      </div>
+
+      <footer class="mt-40 mb-10">
+        <p class="text-center text-xs text-gray-600">
+          Created by Adrian Wieprzkowicz as part of the Wizcode recruitment
+          process.
+        </p>
+      </footer>
+    </div>
   </div>
 </template>
