@@ -3,6 +3,8 @@
 
 body {
   overflow-y: scroll;
-  background: black;
   color: white;
+  background: black;
+  background-attachment: fixed;
+  background-image: linear-gradient(to bottom, #000, #141414);
 }
