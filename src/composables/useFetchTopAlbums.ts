@@ -30,7 +30,7 @@ function parseAlbumData(entry: any): ITunesAlbum {
   return {
     id: entry.id.attributes['im:id'],
     name: entry['im:name'].label,
-    coverSrc: entry['im:image'][0].label?.replace(/\d+x\d+bb/, '260x260bb'),
+    coverSrc: entry['im:image'][0].label?.replace(/\d+x\d+bb/, '280x280bb'),
     price: entry['im:price'].label,
     release: new Date(entry['im:releaseDate'].label),
     rights: entry.rights.label,

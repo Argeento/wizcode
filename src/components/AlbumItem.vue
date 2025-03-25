@@ -6,9 +6,9 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
 </script>
 
 <template>
-  <Atropos tag="li">
+  <Atropos tag="li" class="mb-6">
     <div
-      class="relative w-[280px] overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
+      class="relative overflow-hidden rounded-[20px] border border-b-0 border-l-0 border-white/20 p-[10px]"
     >
       <!-- Blurred card background -->
       <div
@@ -17,16 +17,14 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
       />
 
       <!-- Album cover -->
-      <div
-        class="cover-wrapper mb-[9px] h-[260px] w-[260px] overflow-hidden rounded-[12px]"
-      >
+      <div class="cover-wrapper mb-[9px] overflow-hidden rounded-[12px]">
         <img
           :src="album.coverSrc"
           :alt="album.name"
-          width="260"
-          height="260"
+          width="280"
+          height="280"
           loading="lazy"
-          class="relative -z-10 rounded-[12px]"
+          class="relative -z-10 aspect-square w-full rounded-[12px]"
           data-atropos-offset="-2"
         />
       </div>
@@ -36,8 +34,10 @@ const shortName = computed(() => props.album.name.replace(/[[()].*[\])]/g, ''))
         class="rounded-[12px] border-t-2 border-t-white/20 bg-black/65 px-4 py-3 text-center shadow-lg"
         data-atropos-offset="2"
       >
-        <div class="truncate pb-0 text-center font-medium">{{ shortName }}</div>
-        <div class="ml-2 truncate text-center text-sm text-gray-400">
+        <div class="pb-0 text-center font-medium md:truncate">
+          {{ shortName }}
+        </div>
+        <div class="text-center text-sm text-gray-400 md:truncate">
           {{ props.album.artist.name }}
         </div>
       </div>
