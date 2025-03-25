@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    container_name: wizcode-recruitment-app
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.wizcode-recruitment-app.rule=Host(`${TRAEFIK_DOMAIN}`)'
+      - 'traefik.http.routers.wizcode-recruitment-app.entrypoints=websecure'
+      - 'traefik.http.routers.wizcode-recruitment-app.tls=true'
+      - 'traefik.http.services.wizcode-recruitment-app.loadbalancer.server.port=3000'
+      - 'traefik.docker.network=traefik'
+      - 'traefik.http.routers.wizcode-recruitment-app.tls.certresolver=${TRAEFIK_CERTRESOLVER}'
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    name: traefik
+    external: true
