@@ -64,24 +64,32 @@ const albumsFilteredAndSorted = computed(() => {
   <div v-else-if="error">
     An unexpected error occurred. Please try again later.
   </div>
-  <div v-else class="min-h-screen">
+  <div v-else class="mx-auto min-h-screen max-w-[1800px] px-8">
     <header class="mt-26 mb-20">
       <h1 class="my-8 text-center text-6xl">iTunes Top Albums</h1>
       <SearchBar v-model="searchQuery" />
     </header>
 
-    <aside class="fixed top-[64px] left-0 h-full w-[250px] p-4">
-      <CategoryList
-        v-model="selectedCategoryIds"
-        :albums-filtered-by-query="albumsFilteredByQuery"
-        :categories="categories"
-        class="mb-4"
-      />
-      <SortOptions v-model="sortBy" :options="sortOptions" />
-    </aside>
+    <div class="flex">
+      <aside class="sticky top-6 h-full w-[230px]">
+        <CategoryList
+          v-model="selectedCategoryIds"
+          :albums-filtered-by-query="albumsFilteredByQuery"
+          :categories="categories"
+          class="mb-4"
+        />
+        <SortOptions v-model="sortBy" :options="sortOptions" />
+      </aside>
 
-    <main class="p-4 md:ml-[250px]">
-      <AlbumList :albums="albumsFilteredAndSorted" />
-    </main>
+      <main class="min-h-screen w-[calc(100%-230px)]">
+        <AlbumList :albums="albumsFilteredAndSorted" />
+      </main>
+    </div>
+    <footer class="mt-40 mb-10">
+      <p class="text-center text-xs text-gray-600">
+        Created by Adrian Wieprzkowicz as part of the Wizcode recruitment
+        process.
+      </p>
+    </footer>
   </div>
 </template>
