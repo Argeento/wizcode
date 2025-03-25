@@ -23,14 +23,10 @@ defineProps<{ albums: ITunesAlbum[] }>()
 .list-move,
 .list-enter-active,
 .list-leave-active {
-  transition:
-    all 0.5s cubic-bezier(0.55, 0, 0.1, 1),
-    opacity 0.2s;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 .list-leave-active {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
+  display: none;
 }
 </style>
