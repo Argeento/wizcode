@@ -6,9 +6,9 @@ defineProps<{ albums: ITunesAlbum[] }>()
 
 <template>
   <!-- Disable transitions on mobile -->
-  <div v-if="isMobile">
+  <ul v-if="isMobile">
     <AlbumItem v-for="album in albums" :key="album.id" :album="album" />
-  </div>
+  </ul>
   <TransitionGroup
     v-else
     name="list"
