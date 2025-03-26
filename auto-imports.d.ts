@@ -17,6 +17,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const filterAlbumsByCategory: typeof import('./src/utils/filterAlbums')['filterAlbumsByCategory']
   const filterAlbumsByQuery: typeof import('./src/utils/filterAlbums')['filterAlbumsByQuery']
+  const generateUniqueId: typeof import('./src/utils/generateUniqueId')['generateUniqueId']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -42,6 +43,8 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
+  const parseAlbumData: (typeof import('./src/utils/parseRawAlbumData'))['parseRawAlbumData']
+  const parseRawAlbumData: typeof import('./src/utils/parseRawAlbumData')['parseRawAlbumData']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -78,6 +81,9 @@ declare global {
   // @ts-ignore
   export type { ITunesCategory, ITunesArtist, ITunesAlbum } from './src/composables/useFetchTopAlbums'
   import('./src/composables/useFetchTopAlbums')
+  // @ts-ignore
+  export type { RawITunesAlbumEntry } from './src/utils/parseRawAlbumData'
+  import('./src/utils/parseRawAlbumData')
   // @ts-ignore
   export type { SortValue } from './src/utils/sortAlbums'
   import('./src/utils/sortAlbums')

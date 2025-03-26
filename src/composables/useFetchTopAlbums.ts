@@ -1,3 +1,5 @@
+const API_URL = 'https://itunes.apple.com/us/rss/topalbums/limit=100/json'
+
 export type ITunesCategory = {
   id: string
   name: string
@@ -5,7 +7,7 @@ export type ITunesCategory = {
 }
 
 export type ITunesArtist = {
-  id: number
+  id: string
   name: string
   href: string
 }
@@ -23,32 +25,6 @@ export type ITunesAlbum = {
   category: ITunesCategory
 }
 
-let artistId = 0
-let defaultSort = 0
-
-function parseAlbumData(entry: any): ITunesAlbum {
-  return {
-    id: entry.id.attributes['im:id'],
-    name: entry['im:name'].label,
-    coverSrc: entry['im:image'][0].label?.replace(/\d+x\d+bb/, '280x280bb'),
-    price: entry['im:price'].label,
-    release: new Date(entry['im:releaseDate'].label),
-    rights: entry.rights.label,
-    href: entry.link.attributes.href,
-    defaultSort: defaultSort++,
-    artist: {
-      id: artistId++,
-      name: entry['im:artist'].label,
-      href: entry['im:artist'].attributes?.url,
-    },
-    category: {
-      id: entry.category.attributes['im:id'],
-      name: entry.category.attributes.label,
-      href: entry.category.attributes.url,
-    },
-  }
-}
-
 export function useFetchTopAlbums() {
   const loading = ref(true)
   const error = ref(false)
@@ -56,13 +32,20 @@ export function useFetchTopAlbums() {
 
   onBeforeMount(async () => {
     try {
-      const response = await fetch(
-        'https://itunes.apple.com/us/rss/topalbums/limit=100/json',
-      )
+      const response = await fetch(API_URL)
       const data = await response.json()
-      albums.value = data.feed.entry.map(parseAlbumData)
+
+      if (data.feed && data.feed.entry) {
+        albums.value = data.feed.entry.map(
+          (entry: RawITunesAlbumEntry, index: number) => {
+            return parseRawAlbumData(entry, index)
+          },
+        )
+      } else {
+        throw new Error('Invalid response data')
+      }
     } catch (err) {
-      console.error(err)
+      console.error('Album fetch error:', err)
       error.value = true
     } finally {
       loading.value = false
@@ -70,14 +53,14 @@ export function useFetchTopAlbums() {
   })
 
   const categories = computed(() => {
-    return (
-      albums.value
-        .map((album) => album.category)
-        // Remove duplicate categories
-        .filter((category, index, self) => {
-          return self.findIndex((c) => c.id === category.id) === index
-        })
-    )
+    // Get unique categories
+    const categoryMap = new Map<string, ITunesCategory>()
+    albums.value.forEach((album) => {
+      if (!categoryMap.has(album.category.id)) {
+        categoryMap.set(album.category.id, album.category)
+      }
+    })
+    return Array.from(categoryMap.values())
   })
 
   return { loading, error, albums, categories }
