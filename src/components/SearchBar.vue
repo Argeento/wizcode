@@ -30,6 +30,8 @@ const model = defineModel<string>({ required: true })
       v-model.trim="model"
       placeholder="Search for an artist or album..."
       class="w-full pl-4 outline-none md:py-2 md:pr-4 md:pl-12 md:text-2xl"
+      aria-label="Search for an artist or album"
+      role="searchbox"
     />
   </label>
 </template>
