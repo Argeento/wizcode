@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SORT_OPTIONS } from '../utils/sortAlbums'
+
 const searchQuery = defineModel<string>('searchQuery', { required: true })
 const sortBy = defineModel<string>('sortBy', { required: true })
 const selectedCategoryIds = defineModel<string[]>('selectedCategoryIds', {
@@ -7,7 +9,6 @@ const selectedCategoryIds = defineModel<string[]>('selectedCategoryIds', {
 
 defineProps<{
   categories: ITunesCategory[]
-  sortOptions: readonly { label: string; value: string }[]
 }>()
 </script>
 
@@ -43,7 +44,7 @@ defineProps<{
           class="w-full border-b border-l border-white/20 p-2 transition-all outline-none focus:border-white/60"
         >
           <option
-            v-for="option in sortOptions"
+            v-for="option in SORT_OPTIONS"
             :key="option.value"
             :value="option.value"
             v-text="option.label"

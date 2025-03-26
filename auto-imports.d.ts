@@ -7,12 +7,16 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const SORT_OPTIONS: typeof import('./src/utils/sortAlbums')['SORT_OPTIONS']
+  const SortValue: typeof import('./src/utils/sortAlbums')['SortValue']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const effectScope: typeof import('vue')['effectScope']
+  const filterAlbumsByCategory: typeof import('./src/utils/filterAlbums')['filterAlbumsByCategory']
+  const filterAlbumsByQuery: typeof import('./src/utils/filterAlbums')['filterAlbumsByQuery']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -46,6 +50,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const sortAlbums: typeof import('./src/utils/sortAlbums')['sortAlbums']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -73,4 +78,7 @@ declare global {
   // @ts-ignore
   export type { ITunesCategory, ITunesArtist, ITunesAlbum } from './src/composables/useFetchTopAlbums'
   import('./src/composables/useFetchTopAlbums')
+  // @ts-ignore
+  export type { SortValue } from './src/utils/sortAlbums'
+  import('./src/utils/sortAlbums')
 }

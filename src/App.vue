@@ -1,61 +1,19 @@
 <script setup lang="ts">
 const { loading, error, albums, categories } = useFetchTopAlbums()
 
-// Filters
 const selectedCategoryIds = ref<string[]>([])
 const searchQuery = ref('')
+const albumsFilteredByQuery = computed(() =>
+  filterAlbumsByQuery(albums.value, searchQuery.value),
+)
 
-const albumsFilteredByQuery = computed(() => {
-  if (searchQuery.value === '') {
-    return albums.value
-  }
-  return albums.value.filter((album) => {
-    const searchIn = (album.name + album.artist.name).toLowerCase()
-    const searchFor = searchQuery.value.toLowerCase()
-    return searchIn.includes(searchFor)
-  })
-})
-
-const albumsFilteredByQueryAndCategory = computed(() => {
-  if (selectedCategoryIds.value.length === 0) {
-    return albumsFilteredByQuery.value
-  }
-  return albumsFilteredByQuery.value.filter((album) =>
-    selectedCategoryIds.value.some((id) => id === album.category.id),
-  )
-})
-
-// Sorting
-const sortOptions = [
-  { label: 'iTunes', value: 'default' },
-  { label: 'Name', value: 'name' },
-  { label: 'Artist', value: 'artist' },
-  { label: 'Release date', value: 'releaseDate' },
-] as const
-
-type SortValue = (typeof sortOptions)[number]['value']
-const sortBy = ref<SortValue>('default')
-
+const sortBy = ref(SortValue.Default)
 const albumsFilteredAndSorted = computed(() => {
-  let sortFn: (a: ITunesAlbum, b: ITunesAlbum) => number
-  switch (sortBy.value) {
-    case 'default':
-      sortFn = (a, b) => a.defaultSort - b.defaultSort
-      break
-    case 'name':
-      sortFn = (a, b) => a.name.localeCompare(b.name)
-      break
-    case 'artist':
-      sortFn = (a, b) => a.artist.name.localeCompare(b.artist.name)
-      break
-    case 'releaseDate':
-      sortFn = (a, b) => a.release.getTime() - b.release.getTime()
-      break
-    default:
-      const _exhaustiveCheck: never = sortBy.value
-      throw new Error(`Unhandled sort option: ${_exhaustiveCheck}`)
-  }
-  return [...albumsFilteredByQueryAndCategory.value].sort(sortFn)
+  const filtered = filterAlbumsByCategory(
+    albumsFilteredByQuery.value,
+    selectedCategoryIds.value,
+  )
+  return sortAlbums(filtered, sortBy.value)
 })
 </script>
 
@@ -71,7 +29,6 @@ const albumsFilteredAndSorted = computed(() => {
     <div v-else>
       <MainHeader
         :categories="categories"
-        :sort-options="sortOptions"
         v-model:search-query="searchQuery"
         v-model:selected-category-ids="selectedCategoryIds"
         v-model:sort-by="sortBy"
@@ -85,7 +42,7 @@ const albumsFilteredAndSorted = computed(() => {
             :categories="categories"
             class="mb-4"
           />
-          <SortOptions v-model="sortBy" :options="sortOptions" />
+          <SortOptions v-model="sortBy" />
         </aside>
 
         <main class="min-h-screen w-full lg:w-[calc(100%-230px)]">
