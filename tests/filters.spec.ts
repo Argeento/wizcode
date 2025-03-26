@@ -3,29 +3,29 @@ import './utils/mock-api'
 
 test.describe('Filters Tests', () => {
   test('No category selected displays all albums', async ({ page }) => {
-    await expect(page.getByText('First Album')).toBeVisible()
-    await expect(page.getByText('Second Album')).toBeVisible()
-    await expect(page.getByText('Third Album')).toBeVisible()
+    await expect(page.locator('main >> li')).toHaveCount(3)
   })
 
   test('Filtering by category "Rock" displays only albums in that category', async ({
     page,
   }) => {
     await page.locator('aside').getByText('Rock').click()
+    const albumList = page.locator('main')
 
-    await expect(page.getByText('First Album')).toBeVisible()
-    await expect(page.getByText('Second Album')).not.toBeVisible()
-    await expect(page.getByText('Third Album')).not.toBeVisible()
+    await expect(albumList).toContainText('First Album')
+    await expect(albumList).not.toContainText('Second Album')
+    await expect(albumList).not.toContainText('Third Album')
   })
 
   test('Filtering by category "Pop" displays only albums in that category', async ({
     page,
   }) => {
     await page.locator('aside').getByText('Pop').click()
+    const albumList = page.locator('main')
 
-    await expect(page.getByText('Second Album')).toBeVisible()
-    await expect(page.getByText('First Album')).not.toBeVisible()
-    await expect(page.getByText('Third Album')).not.toBeVisible()
+    await expect(albumList).toContainText('Second Album')
+    await expect(albumList).not.toContainText('First Album')
+    await expect(albumList).not.toContainText('Third Album')
   })
 
   test('Filtering by multiple categories ("Rock" and "Pop") displays albums from both categories', async ({
@@ -33,10 +33,11 @@ test.describe('Filters Tests', () => {
   }) => {
     await page.locator('aside').getByText('Rock').click()
     await page.locator('aside').getByText('Pop').click()
+    const albumList = page.locator('main')
 
-    await expect(page.getByText('First Album')).toBeVisible()
-    await expect(page.getByText('Second Album')).toBeVisible()
-    await expect(page.getByText('Third Album')).not.toBeVisible()
+    await expect(albumList).toContainText('First Album')
+    await expect(albumList).toContainText('Second Album')
+    await expect(albumList).not.toContainText('Third Album')
   })
 })
 
