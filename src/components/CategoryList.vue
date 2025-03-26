@@ -12,12 +12,19 @@ const toggleCategory = (isSelected: boolean, id: string) => {
 }
 
 const categoriesWithCount = computed(() => {
-  return props.categories.map((category) => {
-    const count = props.albumsFilteredByQuery.filter(
-      (album) => album.category.id === category.id,
-    ).length
-    return { ...category, count }
-  })
+  const countMap = props.albumsFilteredByQuery.reduce(
+    (acc, album) => {
+      const id = album.category.id
+      acc[id] = (acc[id] || 0) + 1
+      return acc
+    },
+    {} as Record<string, number>,
+  )
+
+  return props.categories.map((category) => ({
+    ...category,
+    count: countMap[category.id] || 0,
+  }))
 })
 </script>
 
