@@ -68,6 +68,13 @@ npm run test:e2e
 ## Deployment
 
 ```bash
+# Create .env file
+cp .env.example .env
+
+# Edit .env file
+nano .env # or use your favorite text editor
+
+# Build and run Docker container
 docker-compose up -d --build
 ```
 
