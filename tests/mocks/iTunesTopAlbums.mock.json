@@ -1,0 +1,66 @@
+{
+  "feed": {
+    "entry": [
+      {
+        "id": { "attributes": { "im:id": "1" } },
+        "im:name": { "label": "First Album" },
+        "im:image": [{ "label": "https://example.com/album1.jpg" }],
+        "im:price": { "label": "$9.99" },
+        "im:releaseDate": { "label": "2023-01-01T00:00:00-07:00" },
+        "rights": { "label": "Copyright First Album" },
+        "link": { "attributes": { "href": "https://example.com/album1" } },
+        "category": {
+          "attributes": {
+            "im:id": "101",
+            "label": "Rock",
+            "url": "https://example.com/category/rock"
+          }
+        },
+        "im:artist": {
+          "label": "Artist A",
+          "attributes": { "url": "https://example.com/artist/A" }
+        }
+      },
+      {
+        "id": { "attributes": { "im:id": "2" } },
+        "im:name": { "label": "Second Album" },
+        "im:image": [{ "label": "https://example.com/album2.jpg" }],
+        "im:price": { "label": "$12.99" },
+        "im:releaseDate": { "label": "2022-05-15T00:00:00-07:00" },
+        "rights": { "label": "Copyright Second Album" },
+        "link": { "attributes": { "href": "https://example.com/album2" } },
+        "category": {
+          "attributes": {
+            "im:id": "102",
+            "label": "Pop",
+            "url": "https://example.com/category/pop"
+          }
+        },
+        "im:artist": {
+          "label": "Artist B",
+          "attributes": { "url": "https://example.com/artist/B" }
+        }
+      },
+      {
+        "id": { "attributes": { "im:id": "3" } },
+        "im:name": { "label": "Third Album" },
+        "im:image": [{ "label": "https://example.com/album3.jpg" }],
+        "im:price": { "label": "$15.99" },
+        "im:releaseDate": { "label": "2021-11-20T00:00:00-07:00" },
+        "rights": { "label": "Copyright Third Album" },
+        "link": { "attributes": { "href": "https://example.com/album3" } },
+        "category": {
+          "attributes": {
+            "im:id": "103",
+            "label": "Jazz",
+            "url": "https://example.com/category/jazz"
+          }
+        },
+        "im:artist": {
+          "label": "Artist C",
+          "attributes": { "url": "https://example.com/artist/C" }
+        }
+      }
+    ]
+  }
+}
