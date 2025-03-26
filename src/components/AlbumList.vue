@@ -5,6 +5,10 @@ defineProps<{ albums: ITunesAlbum[] }>()
 </script>
 
 <template>
+  <div v-if="albums.length === 0" class="w-full lg:-mt-2 lg:pr-[230px]">
+    <p class="text-center text-xl text-white/80 uppercase">No albums found</p>
+  </div>
+
   <!-- Disable transitions on mobile -->
   <ul v-if="isMobile">
     <AlbumItem v-for="album in albums" :key="album.id" :album="album" />

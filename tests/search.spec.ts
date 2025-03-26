@@ -36,7 +36,7 @@ test.describe('Search Tests', () => {
     await expect(page.getByText('Third Album')).toBeVisible()
   })
 
-  test.skip('No albums found message is displayed when no albums match the query', async ({
+  test('No albums found message is displayed when no albums match the query', async ({
     page,
   }) => {
     await page.getByLabel('search').fill('No albums found')
